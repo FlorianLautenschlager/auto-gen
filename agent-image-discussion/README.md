@@ -14,7 +14,7 @@ This project demonstrates a Python-based AI agent capable of analyzing and discu
 
 ## Azure Integration
 Required models:
-- GPT-1
+- GPT-Image-1
 - GPT-4.1
 
 ## License

@@ -8,10 +8,10 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # You will need to set these environment variables or edit the following values.
-endpoint = os.getenv("GPT_1_AZURE_OPENAI_ENDPOINT")
-deployment = os.getenv("GPT_1_DEPLOYMENT_NAME")
-api_version = os.getenv("GPT_1_OPENAI_API_VERSION")
-subscription_key = os.getenv("GPT_1_AZURE_OPENAI_API_KEY")
+endpoint = os.getenv("GPT_IMAGE_1_AZURE_OPENAI_ENDPOINT")
+deployment = os.getenv("GPT_IMAGE_1_DEPLOYMENT_NAME")
+api_version = os.getenv("GPT_IMAGE_1_OPENAI_API_VERSION")
+subscription_key = os.getenv("GPT_IMAGE_1_AZURE_OPENAI_API_KEY")
 
 
 def decode_and_save_image(b64_data, output_filename):
