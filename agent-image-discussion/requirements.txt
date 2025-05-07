@@ -1,0 +1,3 @@
+autogen-core
+autogen-ext[openai,azure]
+python-dotenv
