@@ -6,8 +6,12 @@ import os
 from autogen_core import SingleThreadedAgentRuntime, AgentId
 from autogen_ext.models.openai import AzureOpenAIChatCompletionClient
 from core import ImageGenerationAgent, ImageGenerationAgentMessage, ImageCriticAgent
+from colorama import Fore, Back, Style, init
 
-load_dotenv()
+# Initialize colorama (required for Windows/PowerShell)
+init()
+
+load_dotenv(override=True)
 
 async def main() -> None:
 
@@ -51,17 +55,27 @@ async def main() -> None:
         ),
     )
 
+    print(Fore.YELLOW + Back.BLUE + "Starting runtime and agents...")
+    print(Style.RESET_ALL)
     runtime.start()
+
+    user_input = input("Press Enter to start image generation or type 'exit' to quit, e.g. \n\n'Generate a flyer for my eye clinic that shows a hyperrealistic image of a human blue eye and the text 'Eye Clinic' in the center of the image. The flyer should be colorful and eye-catching'.\n\n What do you want to generate? ")
+    if user_input.lower == "exit":
+        runtime.stop()
+        print("Exiting...")
+        return
 
     await runtime.send_message(
         ImageGenerationAgentMessage(
-            content="Generate a flyer for my eye clinic that shows a hyperrealistic image of a human blue eye and the text 'Eye Clinic' in the center of the image. The flyer should be colorful and eye-catching.",
+            content=user_input,
               source="User"
         ),
         AgentId("image_generation_agent", "default"),
     )
 
     await runtime.stop_when_idle()
+    print(Fore.YELLOW + Back.BLUE + "Runtime and agents stopped...")
+    print(Style.RESET_ALL)
 
 
 asyncio.run(main())

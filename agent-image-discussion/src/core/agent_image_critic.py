@@ -35,9 +35,9 @@ class ImageCriticAgent(RoutedAgent):
     async def handle_my_message_type(
         self, message: ImagePathMessage, ctx: MessageContext
     ) -> None:
-        print(f"[{self.id.type}] -> received message: {message}")
+        print(f"[{self.id.type}] -> received message from {message.source}")
 
-        print(f"[{self.id.type}] -> critic image: {message.imagePath}")
+        print(f"[{self.id.type}] -> starting to critique image: {message.imagePath}")
 
         image = Image.from_file(message.imagePath)
 
@@ -51,11 +51,11 @@ class ImageCriticAgent(RoutedAgent):
 
         resp = await self.model_client.create(messages=messages)
 
-        print(f"[{self.id.type}] -> critique: {resp.content}")
+        print(f"[{self.id.type}] <- respond critique of image: {resp.content}")
 
         await self.publish_message(
             ImageGenerationAgentMessage(
-                content=resp.content, source="image_generation_agent"
+                content=resp.content, source=self.id.type
             ),
             topic_id=TopicId(type="image-critique", source=self.id.key),
         )

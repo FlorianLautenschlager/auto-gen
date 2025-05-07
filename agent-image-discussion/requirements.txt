@@ -1,3 +1,4 @@
-autogen-core
-autogen-ext[openai,azure]
-python-dotenv
+autogen-core==0.5.6
+autogen-ext[openai,azure]==0.5.6
+autogen-agentchat==0.5.6
+python-dotenv==1.1.0

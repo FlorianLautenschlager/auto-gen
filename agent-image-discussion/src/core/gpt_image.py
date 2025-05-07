@@ -5,7 +5,7 @@ from PIL import Image
 from io import BytesIO
 from dotenv import load_dotenv
 
-load_dotenv()
+load_dotenv(override=True)
 
 # You will need to set these environment variables or edit the following values.
 endpoint = os.getenv("GPT_IMAGE_1_AZURE_OPENAI_ENDPOINT")

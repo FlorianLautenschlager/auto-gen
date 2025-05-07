@@ -9,6 +9,7 @@ class ImageGenerationAgentMessage:
 @dataclass
 class ImagePathMessage:
     imagePath: str
+    source: str
 
 @dataclass
 class ImageCriticAgentMessage:
